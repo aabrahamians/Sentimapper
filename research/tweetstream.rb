@@ -1,4 +1,5 @@
 require 'tweetstream'
+require 'csv'
 
 TweetStream.configure do |config|
   config.consumer_key       = 'TWaKQAMjCCJBJH6Gz8Pp1EeLX'
@@ -14,7 +15,22 @@ client.on_error do |message|
   puts message
 end
 
-# client.locations("-122.75,36.8,-121.75,37.8") do |status|
+
+
+count = 0
+
+
+CSV.open("myfile.csv", "w") do |csv|
+  csv << ["user_name","text", "id"]
   client.locations("-118.516100,33.978320,-118.377740,34.087006") do |status|
-  puts "#{status.text}"
+	  puts "#{status.text}"
+	  puts "#{status.user.name}"
+	  puts "#{status.id}"
+	  csv << ["#{status.user.name}","#{status.text}", "#{status.id}"]
+	  count= count + 1
+		if count > 10
+			puts "maximum limit reached"
+			csv.close
+		end
+	end
 end
