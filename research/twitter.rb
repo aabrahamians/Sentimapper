@@ -5,16 +5,17 @@ require 'json'
 # Now you will fetch /1.1/statuses/user_timeline.json,
 # returns a list of public Tweets from the specified
 # account.
-baseurl = "https://stream.twitter.com"
+baseurl = "https://api.twitter.com"
 # path    = "/1.1/statuses/filter.json"
-path    = "/1.1/statuses/sample.json"
-locations = "-122.75,36.8,-121.75,37.8"
+path    = "/1.1/search/tweets.json"
+geocode = "34.032471, -118.475407, 5mi"
 
 query   = URI.encode_www_form(
     # "screen_name" => "ameeenak",
-    # "locations" => locations,
-    "count" => 10,
-    "track" => "twitter"
+    "count" => 50,
+    "geocode" => geocode,
+    "lang" => "en",
+    "q" => "yolo"
 )
 # address = URI("#{baseurl}#{path}?#{query}")
 address = URI("#{baseurl}#{path}")
@@ -25,8 +26,7 @@ def print_timeline(tweets)
 	puts tweets
   # ADD CODE TO ITERATE THROUGH EACH TWEET AND PRINT ITS TEXT
     tweets.each do |t|
-    	# puts t
-        # puts t["coordinates"]
+        puts t["coordinates"]
         puts t["text"]
     end
 end

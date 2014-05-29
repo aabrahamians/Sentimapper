@@ -15,20 +15,24 @@ client.on_error do |message|
   puts message
 end
 
+count = 0
 CSV.open("myfile.csv", "w") do |csv|
-  csv << ["user_name","text", "id"]
-  client.locations("-118.516100,33.978320,-118.377740,34.087006") do |status|
-	  puts "#{status.text}"
-	  puts "#{status.user.name}"
-	  puts "#{status.id}"
-	  csv << ["#{status.user.name}","#{status.text}", "#{status.id}"]
-	 	@statuses = []
-		TweetStream::Client.new.sample do |status, client|
-	  		@statuses << status
-	  		client.stop if @statuses.size >= 20
-		end
+  csv << [ "id","user_name","text","longitude","latitude","lang"]
+  client.locations("-118.516100,33.978320,-118.377740,34.087006") do |status, client|
+	  puts "ID: #{status.id}"
+	  puts "User: #{status.user.name}"
+	  puts "Text: #{status.text}"
+	  puts "Geo: [#{status.geo.coordinates[0]},#{status.geo.coordinates[1]}]"
+	  if status.respond_to?("coordinates")
+	  	puts "Coordinates: [#{status.coordinates["coordinates"][0]},#{status.coordinates["coordinates"][1]}]"
+	  end
+	  if status.respond_to?("place")
+	  	puts "Place: #{status.place.name}"
+	  end
+	  csv << ["#{status.id}","#{status.user.name}","#{status.text}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{status.user.lang}"]
+	  count += 1
+	  if count >= 50
+	  	client.stop
+	  end
 	end
 end
-
-
-
