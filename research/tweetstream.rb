@@ -17,7 +17,7 @@ end
 
 count = 0
 CSV.open("myfile.csv", "w") do |csv|
-  csv << [ "id","user_name","text","longitude","latitude","lang"]
+  csv << [ "id","user_name","text","latitude","longitude","lang"]
   client.locations("-118.516100,33.978320,-118.377740,34.087006") do |status, client|
 	  puts "ID: #{status.id}"
 	  puts "User: #{status.user.name}"
