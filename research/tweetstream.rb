@@ -15,11 +15,6 @@ client.on_error do |message|
   puts message
 end
 
-
-
-count = 0
-
-
 CSV.open("myfile.csv", "w") do |csv|
   csv << ["user_name","text", "id"]
   client.locations("-118.516100,33.978320,-118.377740,34.087006") do |status|
@@ -27,10 +22,13 @@ CSV.open("myfile.csv", "w") do |csv|
 	  puts "#{status.user.name}"
 	  puts "#{status.id}"
 	  csv << ["#{status.user.name}","#{status.text}", "#{status.id}"]
-	  count= count + 1
-		if count > 10
-			puts "maximum limit reached"
-			csv.close
+	 	@statuses = []
+		TweetStream::Client.new.sample do |status, client|
+	  		@statuses << status
+	  		client.stop if @statuses.size >= 20
 		end
 	end
 end
+
+
+
