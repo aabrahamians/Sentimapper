@@ -31,9 +31,10 @@ CSV.open("tweets.csv", "w") do |csv|
 	  if status.respond_to?("place")
 	  	puts "Place: #{status.place.name}"
 	  end
-	  csv << ["#{status.id}","#{status.user.name}","#{status.text}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{status.user.lang}"]
-	  count += 1
-	  tempHash << ["#{status.id}","#{status.user.name}","#{status.text}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{status.user.lang}"]
+	  if status.geo.coordinates[0] != nil && status.geo.coordinates[1] != nil && status.user.lang == "en"
+	  	csv << ["#{status.id}","#{status.user.name}","#{status.text}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{status.user.lang}"]
+	  	count += 1
+	  end
 	  if count >= 50
 	  	client.stop
 	  end
