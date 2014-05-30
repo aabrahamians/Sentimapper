@@ -19,7 +19,7 @@ development:
   encoding: unicode
   database: SentiMapper_development
   pool: 5
-  username: SentiMapper
+  username: 
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: SentiMapper_test
   pool: 5
-  username: SentiMapper
+  username: 
   password:
 
 production:
@@ -56,5 +56,5 @@ production:
   encoding: unicode
   database: SentiMapper_production
   pool: 5
-  username: SentiMapper
+  username: 
   password:
