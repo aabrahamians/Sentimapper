@@ -1,5 +1,6 @@
 require 'tweetstream'
 require 'csv'
+require 'json'
 
 TweetStream.configure do |config|
   config.consumer_key       = 'TWaKQAMjCCJBJH6Gz8Pp1EeLX'
@@ -16,7 +17,8 @@ client.on_error do |message|
 end
 
 count = 0
-CSV.open("myfile.csv", "w") do |csv|
+
+CSV.open("tweets.csv", "w") do |csv|
   csv << [ "id","user_name","text","latitude","longitude","lang"]
   client.locations("-118.516100,33.978320,-118.377740,34.087006") do |status, client|
 	  puts "ID: #{status.id}"
@@ -31,8 +33,16 @@ CSV.open("myfile.csv", "w") do |csv|
 	  end
 	  csv << ["#{status.id}","#{status.user.name}","#{status.text}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{status.user.lang}"]
 	  count += 1
+	  tempHash << ["#{status.id}","#{status.user.name}","#{status.text}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{status.user.lang}"]
 	  if count >= 50
 	  	client.stop
 	  end
 	end
+end
+
+#JSON converter
+File.open("tweets.json",'w') do |json_file|
+    jsonData = CSV.read("tweets.csv", 
+    	:headers => true, :header_converters => :symbol).map{|csv_row| csv_row.to_hash}
+    json_file.write(JSON.pretty_generate(jsonData));
 end
