@@ -32,7 +32,7 @@ CSV.open("tweets.csv", "w") do |csv|
 	  	puts "Place: #{status.place.name}"
 	  end
 	  if status.geo.coordinates[0].is_a?(Float) && status.geo.coordinates[1].is_a?(Float) && status.user.lang == "en" && status.place.name != "California"
-	  	csv << ["#{status.id}","#{status.user.name}","#{status.text}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{status.user.lang}"]
+	  	csv << ["#{status.id}","#{status.user.name}","#{status.text.delete('\n').delete('\r')}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{status.user.lang}"]
 	  	count += 1
 	  end
 	  puts "Count: #{count}"
