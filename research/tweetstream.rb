@@ -19,7 +19,7 @@ end
 count = 0
 
 CSV.open("tweets.csv", "w") do |csv|
-  csv << [ "id","user_name","text","latitude","longitude","lang"]
+  csv << [ "id","user_name","text","latitude","longitude","sentiment"]
     client.locations("-118.610602,33.733438,-118.048926,34.281011") do |status, client|
 	  puts "ID: #{status.id}"
 	  puts "User: #{status.user.name}"
@@ -32,7 +32,7 @@ CSV.open("tweets.csv", "w") do |csv|
 	  	puts "Place: #{status.place.name}"
 	  end
 	  if status.geo.coordinates[0].is_a?(Float) && status.geo.coordinates[1].is_a?(Float) && status.user.lang == "en" && status.place.name != "California"
-	  	csv << ["#{status.id}","#{status.user.name}","#{status.text.delete('\n').delete('\r')}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{status.user.lang}"]
+	  	csv << ["#{status.id}","#{status.user.name}","#{status.text.gsub(/[\t\n\r]/, '  ')}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{rand(-5..5)}"]
 	  	count += 1
 	  end
 	  puts "Count: #{count}"

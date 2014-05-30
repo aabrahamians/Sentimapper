@@ -19,7 +19,8 @@ handler.buildMap({ provider: {zoom: 5, provider_key: "AIzaSyDJJPOQH24cT6ETa9IZac
         {
           lat: <%=spot["latitude"]%>, // pulls in the latitude for the marker via ERB
           lng: <%=spot["longitude"]%>, // pulls in the longitude for the marker via ERB
-          infowindow: "<%=spot["text"]%>" // info window text (this is optional)
+          title: "tweet",
+          infowindow: '<h1><a href="http://www.twitter.com/<%=spot["user_name"]%>/status/<%=spot["id"]%>">@<%=spot["user_name"]%></a></h1> <p><%=spot["text"]%></p>'
         },
         <% end %>
       ]);
