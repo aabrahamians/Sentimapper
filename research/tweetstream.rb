@@ -20,7 +20,7 @@ count = 0
 
 CSV.open("tweets.csv", "w") do |csv|
   csv << [ "id","user_name","text","latitude","longitude","lang"]
-  client.locations("-118.516100,33.978320,-118.377740,34.087006") do |status, client|
+    client.locations("-118.610602,33.733438,-118.048926,34.281011") do |status, client|
 	  puts "ID: #{status.id}"
 	  puts "User: #{status.user.name}"
 	  puts "Text: #{status.text}"
@@ -31,10 +31,11 @@ CSV.open("tweets.csv", "w") do |csv|
 	  if status.respond_to?("place")
 	  	puts "Place: #{status.place.name}"
 	  end
-	  if status.geo.coordinates[0] != nil && status.geo.coordinates[1] != nil && status.user.lang == "en" && status.place.name != "California"
+	  if status.geo.coordinates[0].is_a?(Float) && status.geo.coordinates[1].is_a?(Float) && status.user.lang == "en" && status.place.name != "California"
 	  	csv << ["#{status.id}","#{status.user.name}","#{status.text}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{status.user.lang}"]
 	  	count += 1
 	  end
+	  puts "Count: #{count}"
 	  if count >= 200
 	  	client.stop
 	  end
