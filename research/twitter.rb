@@ -1,16 +1,17 @@
 require 'rubygems'
 require 'oauth'
 require 'json'
+require 'csv'
 
 # Now you will fetch /1.1/statuses/user_timeline.json,
 # returns a list of public Tweets from the specified
 # account.
 baseurl = "https://api.twitter.com"
 path    = "/1.1/search/tweets.json"
-geocode = "34.032471,-118.475407,5mi"
+geocode = "34.032471,-118.475407,20mi"
 
 query   = URI.encode_www_form(
-    "count" => 50,
+    "count" => 100,
     "geocode" => geocode,
     "lang" => "en",
     "q" => ""
@@ -21,12 +22,38 @@ puts address
 request = Net::HTTP::Get.new address.request_uri
 
 # Print data about a list of Tweets
-def print_timeline(tweets)
+def print_to_file(tweets)
   # ADD CODE TO ITERATE THROUGH EACH TWEET AND PRINT ITS TEXT
-    tweets.each do |t|
-        # puts t["coordinates"]
-        puts t.text
+  count = 0
+  CSV.open("search.csv", "w") do |csv|
+    csv << [ "id","user_name","text","latitude","longitude","sentiment"]
+    tweets.each do |status|
+      puts "ID: #{status["id"]}"
+      puts "User: #{status["user"]["name"]}"
+      puts "Text: #{status["text"]}"
+      if status["place"] != nil
+        puts "Place: #{status["place"]["name"]}"
+      end
+      if status["geo"] != nil
+        puts "Geo: [#{status["geo"]["coordinates"][0]},#{status["geo"]["coordinates"][1]}]"
+        if status["geo"]["coordinates"][0].is_a?(Float) && status["geo"]["coordinates"][1].is_a?(Float) && status["user"]["lang"] == "en" && status["place"]["name"] != "California"
+          csv << ["#{status["id"]}","#{status["user"]["name"]}","#{status["text"].gsub(/[\t\n\r]/, '  ')}","#{status["geo"]["coordinates"][0]}","#{status["geo"]["coordinates"][1]}","#{rand(-5..5)}"]
+          count += 1
+        end
+      # else
+          # csv << ["#{status["id"]}","#{status["user"]["name"]}","#{status["text"].gsub(/[\t\n\r]/, '  ')}","0","0","#{rand(-5..5)}"]        
+      end
+      puts "Count: #{count}"
     end
+  end
+
+  #JSON converter
+  File.open("search.json",'w') do |json_file|
+      jsonData = CSV.read("search.csv", 
+        :headers => true, :header_converters => :symbol).map{|csv_row| csv_row.to_hash}
+      json_file.write(JSON.pretty_generate(jsonData));
+  end
+
 end
 
 # Set up HTTP.
@@ -52,6 +79,6 @@ puts response.code
 if response.code == '200' then
   puts "Responded"
   tweets = JSON.parse(response.body)
-  print_timeline(tweets)
+  print_to_file(tweets["statuses"])
 end
 nil
