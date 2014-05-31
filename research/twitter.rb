@@ -6,28 +6,26 @@ require 'json'
 # returns a list of public Tweets from the specified
 # account.
 baseurl = "https://api.twitter.com"
-# path    = "/1.1/statuses/filter.json"
 path    = "/1.1/search/tweets.json"
-geocode = "34.032471, -118.475407, 5mi"
+geocode = "34.032471,-118.475407,5mi"
 
 query   = URI.encode_www_form(
-    # "screen_name" => "ameeenak",
     "count" => 50,
     "geocode" => geocode,
     "lang" => "en",
-    "q" => "yolo"
+    "q" => ""
 )
 # address = URI("#{baseurl}#{path}?#{query}")
-address = URI("#{baseurl}#{path}")
+address = URI("#{baseurl}#{path}?#{query}")
+puts address
 request = Net::HTTP::Get.new address.request_uri
 
 # Print data about a list of Tweets
 def print_timeline(tweets)
-	puts tweets
   # ADD CODE TO ITERATE THROUGH EACH TWEET AND PRINT ITS TEXT
     tweets.each do |t|
-        puts t["coordinates"]
-        puts t["text"]
+        # puts t["coordinates"]
+        puts t.text
     end
 end
 
@@ -52,7 +50,7 @@ response = http.request request
 tweets = nil
 puts response.code
 if response.code == '200' then
-  put "Responded"
+  puts "Responded"
   tweets = JSON.parse(response.body)
   print_timeline(tweets)
 end
