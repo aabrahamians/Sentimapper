@@ -17,6 +17,13 @@ handler.buildMap({ provider: {zoom: 5, provider_key: "AIzaSyDJJPOQH24cT6ETa9IZac
    markers = handler.addMarkers([
         <% @tweets.each do |spot| %>
         {
+          <% if (spot["sentiment"].to_i > 0) %>
+          picture: {
+          url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+          width: 32,
+          height: 32
+          },
+          <% end %>
           lat: <%=spot["latitude"]%>, // pulls in the latitude for the marker via ERB
           lng: <%=spot["longitude"]%>, // pulls in the longitude for the marker via ERB
           title: "tweet",
@@ -28,6 +35,3 @@ handler.buildMap({ provider: {zoom: 5, provider_key: "AIzaSyDJJPOQH24cT6ETa9IZac
   handler.fitMapToBounds();
 });
 </script>
-
-
-
