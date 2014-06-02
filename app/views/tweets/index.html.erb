@@ -8,11 +8,36 @@
 </div>
 
 <script type="text/javascript">
-
+var mapStyle = [
+    {"featureType":"water","elementType":"geometry","stylers":[{"color":"#193341"}]},
+    {"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#2c5a71"}]},
+    {"featureType":"road","elementType":"geometry","stylers":[{"color":"#29768a"},{"lightness":-37}]},
+    {"featureType":"poi","elementType":"geometry","stylers":[{"color":"#406d80"}]},
+    {"featureType":"transit","elementType":"geometry","stylers":[{"color":"#406d80"}]},
+    {"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#3e606f"},{"weight":2},{"gamma":0.84}]},
+    {"elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},
+    {"featureType":"administrative","elementType":"geometry","stylers":[{"weight":0.6},{"color":"#1a3541"}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#2c5a71"}]}
+  ];
   
 
 handler = Gmaps.build('Google');
-handler.buildMap({ provider: {zoom: 5, provider_key: "AIzaSyDJJPOQH24cT6ETa9IZacS7NENpUt2MKzA"}, internal: {id: 'map'}}, function(){
+handler.buildMap(
+  { 
+    provider: {
+      zoom: 5,
+      provider_key: "AIzaSyDJJPOQH24cT6ETa9IZacS7NENpUt2MKzA",
+      styles: mapStyle,
+      mapTypeControl: false,
+      panControl: false,
+      streetViewControl: false,
+      zoomControlOptions: {
+              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              position: google.maps.ControlPosition.TOP_LEFT
+            }
+    },
+      internal: {id: 'map'}
+  },
+    function(){
    markers = handler.addMarkers([
         <% @tweets.each do |spot| %>
         {
