@@ -19,7 +19,7 @@ end
 count = 0
 
 CSV.open("tweets.csv", "w") do |csv|
-  csv << [ "id","user_name","text","latitude","longitude","sentiment"]
+  csv << [ "tweet_id","user_name","text","latitude","longitude","sentiment"]
     client.locations("-118.610602,33.733438,-118.048926,34.281011") do |status, client|
 	  puts "ID: #{status.id}"
 	  puts "User: #{status.user.name}"

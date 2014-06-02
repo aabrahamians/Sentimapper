@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+  tweetsPath = "#{Rails.root}/app/assets/tweets.json"
+  tweets = JSON.parse(File.read(tweetsPath))
+  tweets.each do |tweet|
+  	Tweet.create!(tweet)
+  end
