@@ -16,6 +16,42 @@ client.on_error do |message|
   puts message
 end
 
+def strip_control_and_extended_characters(text)
+	text.chars.inject("") do |str, char|
+  		if char.ascii_only? and char.ord.between?(32,126)
+    		str << char
+  		end
+  		str
+	end
+end
+
+def calculateSentiment(original_text)
+	csvPath = "afinn.csv"
+
+	afinn = {}
+
+	CSV.foreach(csvPath, { :headers => false } ) do |csv|
+		afinn[csv[0]] = csv[1] #afinn["word"] = score 
+	end
+
+	text = original_text.downcase.gsub(/'/, '').gsub(/[^a-z0-9]/, ' ').gsub(/\s+/, ' ').strip
+	count = 0
+	sum = 0
+	afinn.each do |word, score|
+		pattern = /\b#{word}\b/i
+		while text =~ pattern
+	  		text.sub! pattern, ''
+	  		sum += score.to_f
+	  		count += 1
+		end
+	end
+	if count > 0
+		sum / count.to_f
+	else
+		0
+	end
+end
+
 count = 0
 
 CSV.open("tweets.csv", "w") do |csv|
@@ -32,11 +68,13 @@ CSV.open("tweets.csv", "w") do |csv|
 	  	puts "Place: #{status.place.name}"
 	  end
 	  if status.geo.coordinates[0].is_a?(Float) && status.geo.coordinates[1].is_a?(Float) && status.user.lang == "en" && status.place.name != "California"
-	  	csv << ["#{status.id}","#{status.user.name}","#{status.text.gsub(/[\t\n\r]/, '  ')}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{rand(-5..5)}"]
+	  	cleantext = strip_control_and_extended_characters(status.text.gsub(/[\t\n\r]/, '  '))
+	  	csv << ["#{status.id}","#{status.user.name}","#{cleantext}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{calculateSentiment(cleantext)}"]
+	  	puts "Sentiment: #{calculateSentiment(cleantext)}"
 	  	count += 1
 	  end
 	  puts "Count: #{count}"
-	  if count >= 200
+	  if count >= 500
 	  	client.stop
 	  end
 	end
