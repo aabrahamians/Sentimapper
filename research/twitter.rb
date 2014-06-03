@@ -26,7 +26,7 @@ def print_to_file(tweets)
   # ADD CODE TO ITERATE THROUGH EACH TWEET AND PRINT ITS TEXT
   count = 0
   CSV.open("search.csv", "w") do |csv|
-    csv << [ "id","user_name","text","latitude","longitude","sentiment"]
+    csv << [ "tweet_id","user_name","text","latitude","longitude","sentiment"]
     tweets.each do |status|
       puts "ID: #{status["id"]}"
       puts "User: #{status["user"]["name"]}"
