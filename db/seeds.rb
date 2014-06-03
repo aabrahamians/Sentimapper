@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
   
-  Tweet.delete_all
+  # Tweet.delete_all
   tweetsPath = "#{Rails.root}/app/assets/tweets.json"
   tweets = JSON.parse(File.read(tweetsPath))
   tweets.each do |tweet|

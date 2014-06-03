@@ -56,7 +56,7 @@ count = 0
 
 CSV.open("tweets.csv", "w") do |csv|
   csv << [ "tweet_id","user_name","text","latitude","longitude","sentiment"]
-    client.locations("-118.610602,33.733438,-118.048926,34.281011") do |status, client|
+    client.locations("-118.575016,33.497282,-117.080875,34.181668") do |status, client|
 	  puts "ID: #{status.id}"
 	  puts "User: #{status.user.name}"
 	  puts "Text: #{status.text}"
@@ -69,16 +69,24 @@ CSV.open("tweets.csv", "w") do |csv|
 	  end
 	  if status.geo.coordinates[0].is_a?(Float) && status.geo.coordinates[1].is_a?(Float) && status.user.lang == "en" && status.place.name != "California"
 	  	cleantext = strip_control_and_extended_characters(status.text.gsub(/[\t\n\r]/, '  '))
-	  	csv << ["#{status.id}","#{status.user.name}","#{cleantext}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{calculateSentiment(cleantext)}"]
+	  	cleanName = strip_control_and_extended_characters(status.user.name.gsub(/[\t\n\r]/, '  '))
+	  	csv << ["#{status.id}","#{cleanName}","#{cleantext}","#{status.geo.coordinates[0]}","#{status.geo.coordinates[1]}","#{calculateSentiment(cleantext)}"]
 	  	puts "Sentiment: #{calculateSentiment(cleantext)}"
 	  	count += 1
 	  end
 	  puts "Count: #{count}"
-	  if count >= 500
+	  if count >= 5000
 	  	client.stop
 	  end
 	end
 end
+
+# CSV.open("new.csv", "wb") do |file|
+# 	CSV.foreach("tweets.csv", { :headers => false } ) do |csv|
+# 		cleanName = strip_control_and_extended_characters(csv[1].gsub(/[\t\n\r]/, '  '))
+# 		file << [csv[0],cleanName,csv[2],csv[3],csv[4],csv[5]]
+# 	end
+# end
 
 #JSON converter
 File.open("tweets.json",'w') do |json_file|
