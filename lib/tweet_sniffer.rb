@@ -83,7 +83,7 @@ class TweetSniffer
 		  	count += 1
 		  end
 		  puts "Count: #{count}"
-		  if count >= 500
+		  if count >= 100
 		  	client.stop
 		  end
 		end
