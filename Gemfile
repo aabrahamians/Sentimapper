@@ -55,3 +55,7 @@ end
 gem 'rails_12factor', group: :production
 
 gem 'thin'
+
+gem 'tweetstream'
+
+gem 'underscore-rails'

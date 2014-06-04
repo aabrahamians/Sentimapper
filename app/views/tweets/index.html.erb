@@ -16,13 +16,13 @@
 buildMap([
         <% @tweets.each do |spot| %>
         {
-          <% if (spot["sentiment"].to_f > 3.0) %>
+          <% if (spot["sentiment"].to_f > 1.5) %>
           picture: {
           url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
           width: 32,
           height: 32
           },
-          <% elsif   (spot["sentiment"].to_f < -3.0) %>  
+          <% elsif   (spot["sentiment"].to_f < -1.5) %>  
           picture: {
           url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
           width: 32,
@@ -30,8 +30,8 @@ buildMap([
           },
           <% else %>  
           picture: {
-          // url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
-          url: "http://upload.wikimedia.org/wikipedia/commons/8/8c/Transparent.png",
+          url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
+          // url: "http://upload.wikimedia.org/wikipedia/commons/8/8c/Transparent.png",
           width: 32,
           height: 32
           },
