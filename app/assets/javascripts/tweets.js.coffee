@@ -10,17 +10,15 @@ class RichMarkerBuilder extends Gmaps.Google.Builders.Marker #inherit from built
     return null unless _.isString @args.infowindow
 
     boxText = document.createElement("div")
-    boxText.setAttribute("class", 'yellow') #to customize
+    boxText.setAttribute("class", 'infobox') #to customize
     boxText.innerHTML = @args.infowindow
     @infowindow = new InfoBox(@infobox(boxText))
-
-    # add @bind_infowindow() for < 2.1
 
   infobox: (boxText)->
     content: boxText
     pixelOffset: new google.maps.Size(-140, 0)
     boxStyle:
-      width: "280px"
+      width: "500px"
 mapStyle = [
   {
     featureType: "water"
@@ -81,7 +79,7 @@ mapStyle = [
 	  zoom: 5
 	  provider_key: "AIzaSyDJJPOQH24cT6ETa9IZacS7NENpUt2MKzA"
 	  styles: mapStyle
-	  mapTypeControl: false
+	  mapTypeControl: true
 	  panControl: false
 	  streetViewControl: false
 	  zoomControlOptions:
