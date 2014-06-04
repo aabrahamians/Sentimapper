@@ -54,8 +54,10 @@ end
 
 gem 'rails_12factor', group: :production
 
-gem 'thin'
+# gem 'thin'
 
 gem 'tweetstream'
 
 gem 'underscore-rails'
+
+# gem "rack-timeout"
