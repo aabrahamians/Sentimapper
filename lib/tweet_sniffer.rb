@@ -62,7 +62,7 @@ class TweetSniffer
   		count = 0
 	 	@client.locations(@latlong) do |status, client|
 		  puts "ID: #{status.id}"
-		  puts "User: #{status.user.name}"
+		  puts "User: #{status.user.screen_name}"
 		  puts "Text: #{status.text}"
 		  puts "Geo: [#{status.geo.coordinates[0]},#{status.geo.coordinates[1]}]"
 		  puts "Created: #{status.created_at}"
@@ -73,7 +73,7 @@ class TweetSniffer
 		  	# cleantext = strip_control_and_extended_characters(status.text.gsub(/[\t\n\r]/, '  '))
 		  	# cleanName = strip_control_and_extended_characters(status.user.name.gsub(/[\t\n\r]/, '  '))
 		  	cleantext = status.text.gsub(/[\t\n\r]/, ' ')
-		  	cleanName = status.user.name.gsub(/[\t\n\r]/, ' ')
+		  	cleanName = status.user.screen_name.gsub(/[\t\n\r]/, ' ')
 		  	Tweet.create(tweet_id:"#{status.id}",
 		  		user_name:"#{cleanName}",
 		  		text:"#{cleantext}",
