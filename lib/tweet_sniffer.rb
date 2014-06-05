@@ -65,6 +65,7 @@ class TweetSniffer
 		  puts "User: #{status.user.name}"
 		  puts "Text: #{status.text}"
 		  puts "Geo: [#{status.geo.coordinates[0]},#{status.geo.coordinates[1]}]"
+		  puts "Created: #{status.created_at}"
 		  if status.respond_to?("place")
 		  	puts "Place: #{status.place.name}"
 		  end
@@ -78,7 +79,8 @@ class TweetSniffer
 		  		text:"#{cleantext}",
 		  		latitude:"#{status.geo.coordinates[0]}",
 		  		longitude:"#{status.geo.coordinates[1]}",
-		  		sentiment:"#{calculateSentiment(cleantext)}")
+		  		sentiment:"#{calculateSentiment(cleantext)}",
+		  		created_at:"#{status.created_at}")
 		  	puts "Sentiment: #{calculateSentiment(cleantext)}"
 		  	count += 1
 		  end

@@ -16,13 +16,13 @@
 buildMap([
         <% @tweets.each do |spot| %>
         {
-          <% if (spot["sentiment"].to_f > 1.5) %>
+          <% if (spot["sentiment"].to_f > 0.25) %>
           picture: {
           url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
           width: 32,
           height: 32
           },
-          <% elsif   (spot["sentiment"].to_f < -1.5) %>  
+          <% elsif   (spot["sentiment"].to_f < -0.25) %>  
           picture: {
           url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
           width: 32,
@@ -39,7 +39,7 @@ buildMap([
           lat: <%=spot["latitude"]%>, // pulls in the latitude for the marker via ERB
           lng: <%=spot["longitude"]%>, // pulls in the longitude for the marker via ERB
           title: "tweet",
-          infowindow: '<h1><a href="http://www.twitter.com/<%=spot["user_name"]%>/status/<%=spot["tweet_id"]%>">@<%=spot["user_name"]%></a></h1> <p><%=spot["text"]%></p>'
+          infowindow: '<h1><a href="http://www.twitter.com/<%=spot["user_name"]%>/status/<%=spot["tweet_id"]%>">@<%=spot["user_name"]%></a></h1> <p><%=spot["text"]%></p><h3><%=spot["created_at"]%></h3>'
         },
         <% end %>
       ])
