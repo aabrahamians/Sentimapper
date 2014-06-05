@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+/*start of styling for maps*/
 .infobox {
   position:relative;
   padding:15px;
@@ -15,3 +17,87 @@
   -moz-border-radius:10px;
   border-radius:10px;
 }
+
+/*end of styling for maps*/
+
+
+/*start of styling for divs*/
+#map {
+  width: 100%; 
+  height: 782px;
+}
+
+#graph1 {
+  background-color: blue;
+  width: 100%;
+  height: 820px;
+}
+
+#graph2 {
+  width: 100%;
+  height: 800px;
+}
+
+/*end of styling for divs*/
+
+/*start of styling for scrolling (arrows)*/
+
+.arrow {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  filter: url(filters.svg#grayscale); /* Firefox 3.5+ */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  background-position: center;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  filter: invert(1);
+  -webkit-filter: invert(1);
+  -moz-filter: invert(1);
+  -o-filter: invert(1);
+  -ms-filter: invert(1);
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.arrow:hover {
+  opacity: 0.5;
+}
+
+#down1 {
+  position: absolute;
+  top: 680px;
+  margin-left: 43%;
+  z-index: 9999;
+  background-image: url("arrow_down.png");
+ }  
+
+ #down2 {
+  position: absolute;
+  top: 1470px;
+  margin-left: 43%;
+  z-index: 9999;
+  background-image: url("arrow_down.png");
+ }  
+ 
+ #up1 {
+  position: absolute;
+  top: 900px;
+  margin-left: 43%;
+  z-index: 9999;
+  background-image: url("arrow_up.png");
+ } 
+
+ #up2 {
+  position: absolute;
+  top: 1650px;
+  margin-left: 43%;
+  z-index: 9999;
+  background-image: url("arrow_up.png");
+ } 
+
+/*end of styling for scrolling */

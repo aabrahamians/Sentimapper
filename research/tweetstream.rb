@@ -75,7 +75,7 @@ CSV.open("tweets.csv", "w") do |csv|
 	  	count += 1
 	  end
 	  puts "Count: #{count}"
-	  if count >= 5000
+	  if count >= 1
 	  	client.stop
 	  end
 	end
