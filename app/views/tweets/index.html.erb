@@ -13,15 +13,15 @@
 buildMap([
         <% @tweets.each do |spot| %>
         {
-          <% if (spot["sentiment"].to_f > 0.05) %>
+          <% if (spot["sentiment"] > 0.05) %>
           picture: {
-          url: "assets/green-dot.png",
+          url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
           width: 32,
           height: 32
           },
-          <% elsif   (spot["sentiment"].to_f < -0.05) %>  
+          <% elsif   (spot["sentiment"] < -0.05) %>  
           picture: {
-          url: "assets/blue-dot.png",
+          url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
           width: 32,
           height: 32
           },
