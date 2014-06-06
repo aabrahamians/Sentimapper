@@ -15,13 +15,13 @@ buildMap([
         {
           <% if (spot["sentiment"].to_f > 0.05) %>
           picture: {
-          url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+          url: "assets/green-dot.png",
           width: 32,
           height: 32
           },
           <% elsif   (spot["sentiment"].to_f < -0.05) %>  
           picture: {
-          url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+          url: "assets/blue-dot.png",
           width: 32,
           height: 32
           },
