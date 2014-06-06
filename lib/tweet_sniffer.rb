@@ -28,15 +28,6 @@ class TweetSniffer
 		end
     end
 
-	def strip_control_and_extended_characters(text)
-		text.chars.inject("") do |str, char|
-	  		if char.ascii_only? and char.ord.between?(32,126)
-	    		str << char
-	  		end
-	  		str
-		end
-	end
-
 	def calculateSentiment(original_text)
 		text = original_text.downcase.gsub(/'/, '').gsub(/[^a-z0-9]/, ' ').gsub(/\s+/, ' ').strip
 		count = 0
@@ -56,7 +47,7 @@ class TweetSniffer
 		end
 	end
 
-    def getStream
+    def getStream(tweetCount)
   		# tweetsPath = "#{Rails.root}/app/assets/tweets.json"
   		# JSON.parse(File.read(tweetsPath))
   		count = 0
@@ -70,22 +61,20 @@ class TweetSniffer
 		  	puts "Place: #{status.place.name}"
 		  end
 		  if status.geo.coordinates[0].is_a?(Float) && status.geo.coordinates[1].is_a?(Float) && status.user.lang == "en" && status.place.name != "California"
-		  	# cleantext = strip_control_and_extended_characters(status.text.gsub(/[\t\n\r]/, '  '))
-		  	# cleanName = strip_control_and_extended_characters(status.user.name.gsub(/[\t\n\r]/, '  '))
-		  	cleantext = status.text.gsub(/[\t\n\r]/, ' ')
+		  	cleanText = status.text.gsub(/[\t\n\r]/, ' ')
 		  	cleanName = status.user.screen_name.gsub(/[\t\n\r]/, ' ')
 		  	Tweet.create(tweet_id:"#{status.id}",
 		  		user_name:"#{cleanName}",
-		  		text:"#{cleantext}",
+		  		text:"#{cleanText}",
 		  		latitude:"#{status.geo.coordinates[0]}",
 		  		longitude:"#{status.geo.coordinates[1]}",
-		  		sentiment:"#{calculateSentiment(cleantext)}",
+		  		sentiment:"#{calculateSentiment(cleanText)}",
 		  		created_at:"#{status.created_at}")
-		  	puts "Sentiment: #{calculateSentiment(cleantext)}"
+		  		puts "Sentiment: #{calculateSentiment(cleanText)}"
 		  	count += 1
 		  end
 		  puts "Count: #{count}"
-		  if count >= 500
+		  if count >= tweetCount
 		  	client.stop
 		  end
 		end

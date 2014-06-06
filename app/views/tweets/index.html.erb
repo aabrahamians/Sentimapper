@@ -10,6 +10,7 @@
 
 <!-- three divs (map, graph1, graph2) -->
 
+<<<<<<< HEAD
   <div id="map">
   </div>
   <a href="#graph1"><div class = "arrow" id="down1"></div></a>
@@ -57,18 +58,20 @@
 
 <script type="text/javascript">
 
+=======
+>>>>>>> e91eb840e0e2568779dbfab3bddf04c904df10fe
 buildMap([
         <% @tweets.each do |spot| %>
         {
           <% if (spot["sentiment"].to_f > 0.05) %>
           picture: {
-          url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+          url: "assets/green-dot.png",
           width: 32,
           height: 32
           },
           <% elsif   (spot["sentiment"].to_f < -0.05) %>  
           picture: {
-          url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+          url: "assets/blue-dot.png",
           width: 32,
           height: 32
           },

@@ -19,6 +19,7 @@ class RichMarkerBuilder extends Gmaps.Google.Builders.Marker #inherit from built
     pixelOffset: new google.maps.Size(-140, 0)
     boxStyle:
       width: "500px"
+      
 mapStyle = [
   {
     featureType: "water"
@@ -83,10 +84,11 @@ mapStyle = [
       styles: mapStyle
       mapTypeControl: true
       panControl: false
+      zoomControl: true
       streetViewControl: false
       zoomControlOptions:
         style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
-        position: google.maps.ControlPosition.TOP_LEFT
+        position: google.maps.ControlPosition.BOTTOM_LEFT
     internal:
       id: "map"
   , ->
