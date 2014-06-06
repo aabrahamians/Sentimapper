@@ -18,13 +18,9 @@ class TweetsController < ApplicationController
   def show
     @tweets = Tweet.all.where("CAST(sentiment as float) != 0.0")
 	respond_to do |format|
-    	format.html { }
+    	format.html { render :index }
     	format.json { render json: @tweets }
     end
-  end
-
-  def reload
-  	redirect_to :root
   end
 
 end
