@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-
 describe Tweet do
+
   it "is valid with a tweet_id, user_name, Latitude, longitude, text, sentiment, created_at" do
   	tweet = Tweet.new(tweet_id: "plain", user_name: "blueberries", latitude: "6.0", longitude: "5.2", text: "fasdf", sentiment: "5",created_at: "20020924", updated_at: 20020924)
   	expect(tweet).to be_valid
@@ -44,7 +44,40 @@ describe Tweet do
   	expect(tweet).to be_invalid  	
   end 
 
+  it "should have a sentiment that is a float" do
+    tweet = Tweet.new(tweet_id: "plain", user_name: "blueberries", latitude: "6.0", longitude: "5.2", text: "fasdf", sentiment: "blah",created_at: "20020924", updated_at: 20020924)
+    expect(tweet).to be_invalid
+  end
 
+  it "should have a latitude that is a float" do
+    tweet = Tweet.new(tweet_id: "plain", user_name: "blueberries", latitude: "not a float", longitude: "5.2", text: "fasdf", sentiment: "5",created_at: "20020924", updated_at: 20020924)
+    expect(tweet).to be_invalid
+  end  
 
+  it "should have a longitude that is a float" do
+    tweet = Tweet.new(tweet_id: "plain", user_name: "blueberries", latitude: "6.0", longitude: "not a float", text: "fasdf", sentiment: "5",created_at: "20020924", updated_at: 20020924)
+    expect(tweet).to be_invalid
+  end
+
+  it "should have longitude between -180 to 180" do
+    tweet = Tweet.new(tweet_id: "plain", user_name: "blueberries", latitude: "6.0", longitude: "200", text: "fasdf", sentiment: "5",created_at: "20020924", updated_at: 20020924)
+    expect(tweet).to be_invalid
+    tweet2 = Tweet.new(tweet_id: "plain", user_name: "blueberries", latitude: "6.0", longitude: "-200", text: "fasdf", sentiment: "5",created_at: "20020924", updated_at: 20020924)
+    expect(tweet2).to be_invalid
+  end  
+
+  it "should have latitude between -90 to 90" do
+    tweet = Tweet.new(tweet_id: "plain", user_name: "blueberries", latitude: "-100", longitude: "20", text: "fasdf", sentiment: "5",created_at: "20020924", updated_at: 20020924)
+    expect(tweet).to be_invalid
+    tweet2 = Tweet.new(tweet_id: "plain", user_name: "blueberries", latitude: "100", longitude: "20", text: "fasdf", sentiment: "5",created_at: "20020924", updated_at: 20020924)
+    expect(tweet2).to be_invalid
+  end
+
+  it "should have sentiment between -5 to 5" do
+    tweet = Tweet.new(tweet_id: "plain", user_name: "blueberries", latitude: "50", longitude: "20", text: "fasdf", sentiment: "10",created_at: "20020924", updated_at: 20020924)
+    expect(tweet).to be_invalid
+    tweet2 = Tweet.new(tweet_id: "plain", user_name: "blueberries", latitude: "50", longitude: "20", text: "fasdf", sentiment: "-10",created_at: "20020924", updated_at: 20020924)
+    expect(tweet2).to be_invalid
+  end
 
 end
