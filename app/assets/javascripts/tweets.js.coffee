@@ -19,6 +19,7 @@ class RichMarkerBuilder extends Gmaps.Google.Builders.Marker #inherit from built
     pixelOffset: new google.maps.Size(-140, 0)
     boxStyle:
       width: "500px"
+      
 mapStyle = [
   {
     featureType: "water"
@@ -70,25 +71,34 @@ mapStyle = [
   }
 ]
 
-@buildMap = (markers)->
-	handler = Gmaps.build 'Google', { builders: { Marker: RichMarkerBuilder} } #dependency injection
-
-	#then standard use
-	handler.buildMap 
-		provider:
-	  zoom: 5
-	  provider_key: "AIzaSyDJJPOQH24cT6ETa9IZacS7NENpUt2MKzA"
-	  styles: mapStyle
-	  mapTypeControl: true
-	  panControl: false
-	  streetViewControl: false
-	  zoomControlOptions:
-	    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
-	    position: google.maps.ControlPosition.TOP_LEFT
-
-  internal:
-    id: "map"
-	, ->
-	  markers = handler.addMarkers(markers)
-	  handler.bounds.extendWith(markers)
-	  handler.fitMapToBounds()
+@buildMap = (markers) ->
+  handler = undefined
+  handler = Gmaps.build("Google",
+    builders:
+      Marker: RichMarkerBuilder
+  )
+  handler.buildMap
+    provider:
+      zoom: 10
+      provider_key: "AIzaSyDJJPOQH24cT6ETa9IZacS7NENpUt2MKzA"
+      styles: mapStyle
+      mapTypeControl: true
+      panControl: false
+      zoomControl: true
+      streetViewControl: false
+      zoomControlOptions:
+        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+        position: google.maps.ControlPosition.BOTTOM_LEFT
+    internal:
+      id: "map"
+  , ->
+    marker = handler.addMarker(
+      lat: 33.923148
+      lng: -118.211514
+    ,
+      visible: false
+    )
+    handler.map.centerOn marker
+    markers = handler.addMarkers(markers)
+    handler.bounds.extendWith markers
+    handler.fitMapToBounds()

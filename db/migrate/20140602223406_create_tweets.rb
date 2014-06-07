@@ -7,6 +7,7 @@ class CreateTweets < ActiveRecord::Migration
       t.string :latitude
       t.string :longitude
       t.string :sentiment
+      t.string :created_at
 
       t.timestamps
     end

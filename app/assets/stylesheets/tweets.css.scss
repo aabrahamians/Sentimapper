@@ -3,28 +3,47 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
 /*start of styling for maps*/
+
+div.infobox {
+  margin:15px;
+}
+
 .infobox {
   position:relative;
   padding:15px;
-  margin:50px 0 3em;
   text-align:center;
-  
   color:#fff;
-  background:#333;
+  background:rgba(0,0,0,0.8);
+  border: 2px solid black;
   /* css3 */
   -webkit-border-radius:10px;
   -moz-border-radius:10px;
   border-radius:10px;
+
+    p {
+      font-size: 18pt;
+    }
+    p#time {
+      text-align:right;
+      font-size: 12pt;
+    }
+    p#score {
+      color: gray;
+      font-size: 14pt;
+    }
 }
+
 
 /*end of styling for maps*/
 
 
 /*start of styling for divs*/
 #map {
+  margin-top: -35px;
   width: 100%; 
-  height: 782px;
+  height: 820px;
 }
 
 #graph1 {
@@ -35,7 +54,7 @@
 
 #graph2 {
   width: 100%;
-  height: 800px;
+  height: 820px;
 }
 
 /*end of styling for divs*/
@@ -101,3 +120,4 @@
  } 
 
 /*end of styling for scrolling */
+

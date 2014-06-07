@@ -2,7 +2,9 @@ SentiMapper::Application.routes.draw do
   
 
   root 'tweets#index'
-
+  resources :tweets
+  
+  # get 'tweets/reload' => 'tweets#v'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
