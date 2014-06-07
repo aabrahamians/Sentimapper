@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20140602223406) do
     t.string   "tweet_id"
     t.string   "user_name"
     t.string   "text"
-    t.string   "latitude"
-    t.string   "longitude"
-    t.string   "sentiment"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "sentiment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

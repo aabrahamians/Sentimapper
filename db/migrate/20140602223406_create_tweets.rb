@@ -4,9 +4,9 @@ class CreateTweets < ActiveRecord::Migration
       t.string :tweet_id
       t.string :user_name
       t.string :text
-      t.string :latitude
-      t.string :longitude
-      t.string :sentiment
+      t.float :latitude
+      t.float :longitude
+      t.float :sentiment
       t.string :created_at
 
       t.timestamps
