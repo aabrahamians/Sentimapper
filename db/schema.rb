@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140602223406) do
     t.float    "latitude"
     t.float    "longitude"
     t.float    "sentiment"
+    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

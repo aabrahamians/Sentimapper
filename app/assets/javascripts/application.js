@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require underscore
 //= require gmaps/google
-//= require foundation
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
-
+ window.onload = function() {
+        $(document).foundation();
+};
