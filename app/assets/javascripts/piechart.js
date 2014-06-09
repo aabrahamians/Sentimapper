@@ -5,13 +5,13 @@ $( document ).ready(function() {
     pieChart  : [
       {
         color       : 'red',
-        description : 'Happy Tweets',
+        description : 'Positive Tweets',
         title       : 'flowers',
         value       : np()
       },
       {
         color       : 'blue',
-        description : 'Sad Tweets',
+        description : 'Negative Tweets',
         title       : 'trains',
         value       : pp()
       }
