@@ -20,7 +20,11 @@
     }
 
 #areg {
-  border: 5px dotted pink; 
+  padding-top: 25px;
+  height: 500px;
+  text-align: center;
+  position:relative;
+  margin: 0 auto; 
   width: 700px;
   background-color: white;
   box-shadow: 0 2em 2em #333333;

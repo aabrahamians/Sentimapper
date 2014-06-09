@@ -21,13 +21,12 @@ body ul {
 }
 
 body ul, body li {
-  padding-top: 100px;
   margin: 0;
   padding: 0;
 }
 
 .chart {
-  min-height: 600px;
+  min-height: 500px;
   border-bottom: 1px solid #eeeeee;
   padding: 1em;
 }
@@ -40,10 +39,10 @@ body ul, body li {
 .chart--headline {
   position: relative;
   font-weight: 100;
-  font-size: 28px;
+  font-size: 45px;
 }
 .chart--headline:before {
-  position: absolute;
+  /*position: absolute;*/
   content: '';
   bottom: 133%;
   left: 50%;
