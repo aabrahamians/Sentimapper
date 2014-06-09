@@ -1,9 +1,11 @@
+
+/*nav bar opacity*/
 .fixed {
   opacity: 0.6;
 }
 
 
-
+/*gmaps window*/
 div.infobox {
 margin: 15px;
 }
@@ -18,6 +20,7 @@ border: 2px solid black;
 -moz-border-radius: 10px;
 border-radius: 10px;
 }
+
 /*start of styling for divs*/
 #map {
   width: 100%; 
@@ -32,6 +35,7 @@ border-radius: 10px;
 }
 
 #graph2 {
+  text-align: center;
   width: 100%;
   height: 800px;
 }
