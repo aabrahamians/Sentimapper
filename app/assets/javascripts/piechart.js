@@ -7,13 +7,13 @@ $( document ).ready(function() {
         color       : 'red',
         description : 'Positive Tweets',
         title       : 'flowers',
-        value       : np()
+        value       : pp()
       },
       {
         color       : 'blue',
         description : 'Negative Tweets',
         title       : 'trains',
-        value       : pp()
+        value       : np()
       }
     ]
   };
