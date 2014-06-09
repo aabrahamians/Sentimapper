@@ -115,13 +115,18 @@ function np() {
     var negativepercent = "<%= @negpercent%>"
     console.log("Neg",negativepercent);
     return negativepercent
-  };
+  }
  
   function pp() {
     var positivepercent = "<%= @pospercent %>"
     console.log("Pos",positivepercent);
     return positivepercent
-  };
+  }
+
+  function getHistogramData() {
+    var data = <%=@histogramData.html_safe%>;
+    return data;
+  }
 
 </script>
 

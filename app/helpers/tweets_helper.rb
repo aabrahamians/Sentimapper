@@ -68,7 +68,14 @@ module TweetsHelper
                 put "sentiment out of bounds"
                 end 
         end
-        return val
+
+        data = []
+        val.each_with_index do |val,index|
+            temp = {key:index,value:val}
+            data.push(temp)
+        end
+        
+        return data
     end
 
 end
