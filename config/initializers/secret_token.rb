@@ -9,4 +9,11 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-SentiMapper::Application.config.secret_key_base = '982dcf4f26625092c6f123a17d0dc4a35586b9a53fbca8c6de8d5ce755fb71b181b588b945d7cee9c4a98dc8d35916f2fb741db0c7435e2d6e662c109db344e2'
+SentiMapper::Application.config.secret_key_base = '982dcf4f26625092c6f123a17d0dc4a35586b'
+
+unless Rails.env.production?
+	ENV['CONSUMER_KEY'] = 'TWaKQAMjCCJBJH6Gz8Pp1EeLX'
+	ENV['CONSUMER_SECRET'] = 'CHIS41dDObbEP6aBRl5fOTVTTsg1vKG1ngvvRtA6g52kibEK9s'
+	ENV['OAUTH_TOKEN'] = '2518936561-ZTI6mTh4uaJaL8c3Llo4ARr6dX4zygx7LbrPcIe'
+	ENV['OAUTH_SECRET'] = 'tbY7jzEOma0Y5hxSBBrtTqW9khF7ikKGWG0lj79YIC1co'
+end

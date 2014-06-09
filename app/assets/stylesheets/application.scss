@@ -9,11 +9,17 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+<<<<<<< HEAD:app/assets/stylesheets/application.css.scss
  //= require foundation_and_overrides
 
  *= require foundation_and_overrides
+=======
+>>>>>>> 37c4e9123d8078f5f2f25156503fd2798c4799ba:app/assets/stylesheets/application.scss
  *= require_tree .
  */
+
+@import "foundation_and_overrides";
+/* Add imports of custom sass/scss files here */
 
  
 

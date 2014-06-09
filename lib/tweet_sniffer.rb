@@ -3,14 +3,15 @@ require 'csv'
 require 'json'
 
 class TweetSniffer
-    def initialize(latlong)
+    def initialize(latlong, location)
         @latlong = latlong
-		
+		@location = location
+
 		TweetStream.configure do |config|
-		  config.consumer_key       = 'TWaKQAMjCCJBJH6Gz8Pp1EeLX'
-		  config.consumer_secret    = 'CHIS41dDObbEP6aBRl5fOTVTTsg1vKG1ngvvRtA6g52kibEK9s'
-		  config.oauth_token        = '2518936561-ZTI6mTh4uaJaL8c3Llo4ARr6dX4zygx7LbrPcIe'
-		  config.oauth_token_secret = 'tbY7jzEOma0Y5hxSBBrtTqW9khF7ikKGWG0lj79YIC1co'
+		  config.consumer_key       = ENV['CONSUMER_KEY']
+		  config.consumer_secret    = ENV['CONSUMER_SECRET']
+		  config.oauth_token        = ENV['OAUTH_TOKEN']
+		  config.oauth_token_secret = ENV['OAUTH_SECRET']
 		  config.auth_method        = :oauth
 		end
 
@@ -60,7 +61,7 @@ class TweetSniffer
 		  if status.respond_to?("place")
 		  	puts "Place: #{status.place.name}"
 		  end
-		  if status.geo.coordinates[0].is_a?(Float) && status.geo.coordinates[1].is_a?(Float) && status.user.lang == "en" && status.place.name != "California"
+		  if status.geo.coordinates[0].is_a?(Float) && status.geo.coordinates[1].is_a?(Float) && status.user.lang == "en" && status.place.name != "California" && status.place.name != "Washington"
 		  	cleanText = status.text.gsub(/[\t\n\r]/, ' ')
 		  	cleanName = status.user.screen_name.gsub(/[\t\n\r]/, ' ')
 		  	Tweet.create(tweet_id:"#{status.id}",
@@ -69,7 +70,8 @@ class TweetSniffer
 		  		latitude:"#{status.geo.coordinates[0]}",
 		  		longitude:"#{status.geo.coordinates[1]}",
 		  		sentiment:"#{calculateSentiment(cleanText)}",
-		  		created_at:"#{status.created_at}")
+		  		created_at:"#{status.created_at}",
+		  		location: @location)
 		  		puts "Sentiment: #{calculateSentiment(cleanText)}"
 		  	count += 1
 		  end
