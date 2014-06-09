@@ -15,6 +15,12 @@ module TweetsHelper
         if neg > 0 && post > 0
         	negpercent = neg/(neg+post)
         	pospercent = post/(neg+post)
+        elsif neg > 0
+            negpercent = 1.0
+            pospercent = 0.0
+        elsif post > 0
+            pospercent = 1.0
+            negpercent = 0.0
         end
 
         [negpercent,pospercent]
