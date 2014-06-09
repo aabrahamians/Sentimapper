@@ -4,7 +4,6 @@ $( document ).ready(function() {
   var h = 250;
 
   var dataset = getHistogramData();
-  console.log("data",dataset);
   
   var xScale = d3.scale.ordinal()
   				.domain(d3.range(dataset.length))
