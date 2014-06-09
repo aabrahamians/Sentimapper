@@ -82,13 +82,15 @@ mapStyle = [
       zoom: 10
       provider_key: "AIzaSyDJJPOQH24cT6ETa9IZacS7NENpUt2MKzA"
       styles: mapStyle
+      disableDefaultUI: true
       mapTypeControl: true
       panControl: false
-      zoomControl: true
       streetViewControl: false
+      zoomControl: true
       zoomControlOptions:
+        style: google.maps.ZoomControlStyle.LARGE 
         style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
-        position: google.maps.ControlPosition.BOTTOM_LEFT
+        position: google.maps.ControlPosition.TOP_LEFT
     internal:
       id: "map"
   , ->

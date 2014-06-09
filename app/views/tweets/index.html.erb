@@ -47,12 +47,28 @@
       </ul>
     </div>
       <!-- end of piechart index -->
-    <a href="#map"><div class = "arrow" id="up1"></div></a>
-    <a href="#graph2"><div class = "arrow" id="down2"></div></a>
+    <a href="#map">
+      <div class = "arrow" id="up1">
+      </div>
+    </a>
+    <a href="#graph2">
+      <div class = "arrow" id="down2">
+      </div>
+    </a>
   </div>
   
   <div id="graph2">
-    <label><input type="checkbox"> Sort values</label>
+
+
+
+    <div id="areg" style="border: 5px dotted pink; width: 700px;">
+      <div class="chart">
+      
+      </div>
+
+      <button id="sort" onclick="sortBars()">Sort</button>
+      <button id="reset" onclick="reset()">Reset</button>
+  </div>
 
     <a href="#graph1"><div class = "arrow" id="up2"></div></a>
   </div>

@@ -36,6 +36,16 @@ class TweetsController < ApplicationController
       @pospercent = percentages[1]
   	  respond_with @tweets
   	end  
+
+    # histogram data example for Areg
+    # put this before a response
+    # look in rail s output to see this
+
+    dataset = calcSentimentFrequency(@tweets)
+    dataset.each_with_index do |data, index|
+      puts "#{index}:#{data}"
+    end
+
   end
 
 end
