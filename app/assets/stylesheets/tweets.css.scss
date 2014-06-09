@@ -1,4 +1,17 @@
-
+div.infobox {
+margin: 15px;
+}
+.infobox {
+position: relative;
+padding: 15px;
+text-align: center;
+color: #fff;
+background: rgba(0,0,0,0.8);
+border: 2px solid black;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
 /*start of styling for divs*/
 #map {
   width: 100%; 
