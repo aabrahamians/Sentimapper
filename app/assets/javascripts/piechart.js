@@ -7,13 +7,13 @@ $( document ).ready(function() {
         color       : 'red',
         description : 'Happy Tweets',
         title       : 'flowers',
-        value       : 0.62
+        value       : np()
       },
       {
         color       : 'blue',
         description : 'Sad Tweets',
         title       : 'trains',
-        value       : 0.38
+        value       : pp()
       }
     ]
   };
@@ -21,8 +21,7 @@ $( document ).ready(function() {
   var DURATION = 1500;
   var DELAY    = 500;
   
-  
-  
+
   /**
    * draw the fancy pie chart
    *
