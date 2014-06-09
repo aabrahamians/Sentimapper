@@ -96,13 +96,13 @@ buildMap([
 <script type="text/javascript">
 
 function np() {
-    var negativepercent = "<%= @negpercent.round(2) %>"
+    var negativepercent = "<%= @negpercent%>"
     console.log("Neg",negativepercent);
     return negativepercent
   };
  
   function pp() {
-    var positivepercent = "<%= @pospercent.round(2) %>"
+    var positivepercent = "<%= @pospercent %>"
     console.log("Pos",positivepercent);
     return positivepercent
   };

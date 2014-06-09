@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-
 /*start of styling for maps*/
 
 div.infobox {
@@ -41,20 +40,20 @@ div.infobox {
 
 /*start of styling for divs*/
 #map {
-  margin-top: -35px;
   width: 100%; 
-  height: 820px;
+  height: 825px;
 }
 
 #graph1 {
+  margin-top: -70px;
   background-color: blue;
   width: 100%;
-  height: 820px;
+  height: 825px;
 }
 
 #graph2 {
   width: 100%;
-  height: 820px;
+  height: 800px;
 }
 
 /*end of styling for divs*/
@@ -105,7 +104,7 @@ div.infobox {
  
  #up1 {
   position: absolute;
-  top: 900px;
+  top: 880px;
   margin-left: 43%;
   z-index: 9999;
   background-image: url("arrow_up.png");
