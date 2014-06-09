@@ -17,13 +17,6 @@
 //= require gmaps/google
 //= require_tree .
 
-<<<<<<< HEAD
-window.onload = function() {
-        $(document).foundation();
-};
-
-=======
  window.onload = function() {
         $(document).foundation();
 };
->>>>>>> 37c4e9123d8078f5f2f25156503fd2798c4799ba
