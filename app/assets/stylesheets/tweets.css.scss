@@ -1,42 +1,3 @@
-// Place all the styles related to the tweets controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-/*start of styling for maps*/
-
-div.infobox {
-  margin:15px;
-}
-
-.infobox {
-  position:relative;
-  padding:15px;
-  text-align:center;
-  color:#fff;
-  background:rgba(0,0,0,0.8);
-  border: 2px solid black;
-  /* css3 */
-  -webkit-border-radius:10px;
-  -moz-border-radius:10px;
-  border-radius:10px;
-
-    p {
-      font-size: 18pt;
-    }
-    p#time {
-      text-align:right;
-      font-size: 12pt;
-    }
-    p#score {
-      color: gray;
-      font-size: 14pt;
-    }
-}
-
-
-/*end of styling for maps*/
-
 
 /*start of styling for divs*/
 #map {
@@ -118,5 +79,4 @@ div.infobox {
   background-image: url("arrow_up.png");
  } 
 
-/*end of styling for scrolling */
-
+/*end of styling for*/
