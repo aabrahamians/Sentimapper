@@ -17,11 +17,20 @@ $( document ).ready(function() {
   	return d.key;
   };
 
+  var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function(d) {
+      return "<strong>Sentiment:</strong> <span style='color:red'>" + d.tip + "</span>";
+    })
+
   //Create SVG element
-  var svg = d3.select("#areg .chart")
+  var svg = d3.select("#thebar .chart")
   			.append("svg")
   			.attr("width", w)
   			.attr("height", h);
+  
+  svg.call(tip);
 
   //Create bars
   svg.selectAll("rect")
@@ -41,25 +50,8 @@ $( document ).ready(function() {
      .attr("fill", function(d) {
   		return "rgb(0, 0, " + (d.value * 10) + ")";
      })
-
-  	//Tooltip
-  	.on("mouseover", function(d) {
-  		//Get this bar's x/y values, then augment for the tooltip
-  		var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2;
-  		var yPosition = parseFloat(d3.select(this).attr("y")) + 14;
-  		
-  		//Update Tooltip Position & value
-  		d3.select("#tooltip")
-  			.style("left", xPosition + "px")
-  			.style("top", yPosition + "px")
-  			.select("#value")
-  			.text(d.value);
-  		d3.select("#tooltip").classed("hidden", false)
-  	})
-  	.on("mouseout", function() {
-  		//Remove the tooltip
-  		d3.select("#tooltip").classed("hidden", true);
-  	})	;
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
 
   //Create labels
   svg.selectAll("text")

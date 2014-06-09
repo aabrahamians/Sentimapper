@@ -71,7 +71,34 @@ module TweetsHelper
 
         data = []
         val.each_with_index do |val,index|
-            temp = {key:index,value:val}
+            case index
+                when 0
+                    text = "-5...-4"
+                when 1
+                    text = "-4...-3"
+                when 2
+                    text = "-3...-2"
+                when 3
+                    text = "-2...-1"
+                when 4
+                    text = "-1...0"
+                when 5
+                    text = "0...1"
+                when 6
+                    text = "1...2"
+                when 7
+                    text = "2...3"
+                when 8
+                    text = "3...4"
+                when 9
+                    text = "4...5"
+                when 10
+                    text = "5+"
+                else
+                    text = "Out of Range"
+                end
+
+            temp = {key:index,value:val,tip:text}
             data.push(temp)
         end
         
