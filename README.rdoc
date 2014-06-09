@@ -1,28 +1,41 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sentimapper is a web app that allows users to browse real times tweets along a calculated sentiment score.  Reporting statistics are also included via a D3 pie graph and bar chart.
 
-Things you may want to cover:
+== Implementation 
+* Twitter Stream API
+* Google Maps API thru Gmaps4Rails
+* D3.js
+* Jquery
+* Foundation
+* Ruby on Rails
 
-* Ruby version
+== Testing
+* Rspec
 
-* System dependencies
+== Features
+* Tweets are updated hourly via the Twitter Stream API
+* Data is include for mulitple cities and can be filtered via params
+* Supports JSON output
+* Tweet details like text and username can be viewed by clicking on markers
+* D3 charts are updated dynamically based on data filters
 
-* Configuration
+== Filtering
+By default the tweets are filtered to not include those with a sentiment of 0.0.  You may however change the filters with the following paramters.
 
-* Database creation
+* /?loc=CITY [LA,SF,SEA]
+This param filter will filter tweets by city area.
 
-* Database initialization
+* /?min=-5&max=5
+The min and max param allow you to filter tweets by sentiment score.
 
-* How to run the test suite
+== JSON
+JSON output can be reach by going to the appropriate path or following the link on the navbar.
 
-* Services (job queues, cache servers, search engines, etc.)
+* /tweets.json will result in the default json output.
 
-* Deployment instructions
+== Credits
 
-* ...
+This project is a joint venture between Areg Abrahamians, Albert Liao, and Jeff Takaki.  We hope you find interesting or entertaining data from our app.
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+For questions email: albertliao@gmail.com
