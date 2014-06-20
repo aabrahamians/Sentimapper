@@ -2,7 +2,7 @@
 
 Sentimapper is a web app that allows users to browse real times tweets along a calculated sentiment score.  Reporting statistics are also included via a D3 pie graph and bar chart.
 
-http://sentimapper.herokuapp.com/
+http://sentimapper.herokuapp.com
 
 == Implementation 
 * Twitter Stream API
